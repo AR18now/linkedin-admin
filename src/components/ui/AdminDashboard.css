@@ -1,0 +1,103 @@
+/* General Styles for the AppBar */
+.app-bar {
+    z-index: 1300; /* Make sure the app bar is on top */
+    height: 80px;
+  }
+  
+  .app-bar-toolbar {
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .app-bar-logo {
+    height: 50px;
+    margin-right: 16px;
+  }
+  
+  .app-bar-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .app-bar-search input {
+    background-color: white;
+    border-radius: 1px;
+    padding: 8px;
+    width: 200px;
+  }
+  
+  .search-results {
+    z-index: 1300;
+    width: 250px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+  
+  .search-result-item {
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .search-result-item:hover {
+    background-color: #f4f4f4;
+  }
+  
+  /* Mobile sidebar toggle */
+  @media (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+  
+    .mobile-sidebar {
+      display: block;
+    }
+  
+    .sidebar-item {
+      font-size: 14px;
+    }
+  }
+  
+  /* Desktop Sidebar */
+  @media (min-width: 768px) {
+    .sidebar {
+      width: 240px;
+      display: block;
+    }
+  
+    .sidebar-item {
+      font-size: 16px;
+    }
+  }
+  
+  /* Main content styling */
+  .main-content {
+    flex-grow: 1;
+    padding: 24px;
+    margin-left: 240px;
+    transition: margin-left 0.3s ease-in-out;
+  }
+  
+  .main-content.mobile {
+    margin-left: 0;
+  }
+  
+  /* AppBar spacing for when sidebar is open */
+  .main-content-with-sidebar {
+    margin-left: 240px;
+  }
+  
+  .toolbar-spacer {
+    min-height: 80px; /* To add spacing for AppBar */
+  }
+  
+  .toolbar-spacer-mobile {
+    min-height: 80px;
+  }
+  
+  .badge-icon {
+    margin-left: 16px;
+  }
+  
