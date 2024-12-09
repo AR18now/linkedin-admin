@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Lock } from 'lucide-react';
-import axios from 'axios';  // Import axios
+import axios from 'axios'; // Import axios
 import {
   Box,
   Button,
@@ -8,7 +8,6 @@ import {
   Typography,
   InputAdornment,
   Container,
-  Grid,
   Paper,
   Snackbar,
   Alert,
@@ -26,20 +25,34 @@ const AuthPages = ({ setIsAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const hardcodedEmail = 'ali@example.com';
+    const hardcodedPassword = '12345678';
+
+    // Check for hardcoded credentials
+    if (
+      formData.email === hardcodedEmail &&
+      formData.password === hardcodedPassword
+    ) {
+      setUser({ email: hardcodedEmail }); // Simulate a user object
+      alert('User logged in successfully (hardcoded)!');
+      setIsAuthenticated(true);
+      return;
+    }
+
     try {
-    // Using POST request to send email and password in the body
-    const response = await axios.post(
-      'http://localhost:5000/api/users/login', // Assuming you have a POST endpoint for login
-      {
-        email: formData.email,
-        password: formData.password,
-      }
-    );
+      // If not hardcoded, proceed with API call
+      const response = await axios.post(
+        'http://localhost:5000/api/users/login', // Assuming you have a POST endpoint for login
+        {
+          email: formData.email,
+          password: formData.password,
+        }
+      );
 
       if (response.data) {
         setUser(response.data);
-        alert('User loggedin successfully!');
-        setIsAuthenticated(true);  // You can set this to true based on the result
+        alert('User logged in successfully!');
+        setIsAuthenticated(true);
       }
     } catch (err) {
       setError(err.response?.data?.message || 'User not found');
@@ -63,7 +76,7 @@ const AuthPages = ({ setIsAuthenticated }) => {
     <Box
       sx={{
         height: '100vh',
-        backgroundColor: '#bbdefb', // Light blue background for the entire page
+        backgroundColor: '#bbdefb',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -74,7 +87,7 @@ const AuthPages = ({ setIsAuthenticated }) => {
           elevation={6}
           sx={{
             padding: 4,
-            backgroundColor: '#e3f2fd', // Slightly darker blue for the card
+            backgroundColor: '#e3f2fd',
             borderRadius: 2,
             boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
             display: 'flex',
@@ -151,8 +164,7 @@ const AuthPages = ({ setIsAuthenticated }) => {
               sx={{
                 mt: 2,
                 padding: '12px',
-                background: '#1976d2',  // This is a blue shade
-
+                background: '#1976d2',
                 '&:hover': {
                   background: '#ff0077',
                 },
